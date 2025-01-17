@@ -13,23 +13,25 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: BasicAppbar(
-        hideBack: true,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Text.rich(TextSpan(children: [
-            TextSpan(
-                text: 'Movie',
-                style: TextStyles.bold19.copyWith(color: Colors.white)),
-            TextSpan(
-                text: ' App',
-                style: TextStyles.bold19.copyWith(color: Colors.red)),
-          ])),
+    return SafeArea(
+      child: Scaffold(
+        appBar: BasicAppbar(
+          hideBack: true,
+          leading: Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: Text.rich(TextSpan(children: [
+              TextSpan(
+                  text: 'Movie',
+                  style: TextStyles.bold19.copyWith(color: Colors.white)),
+              TextSpan(
+                  text: ' App',
+                  style: TextStyles.bold19.copyWith(color: Colors.red)),
+            ])),
+          ),
         ),
+        backgroundColor: Color(0xFF1B1A21),
+        body: HomeViewBody(),
       ),
-      backgroundColor: Color(0xFF1B1A21),
-      body: HomeViewBody(),
     );
   }
 }
