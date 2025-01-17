@@ -18,6 +18,24 @@ final MovieService movieService;
         return Left(error);
       },
       (data) {
+        var movie = List.from(data['content'])
+            .map((item) => (MovieMapper.toEntity(MovieModel.fromJson(item))))
+            .toList();
+        print('Trending Movies Data: $movie'); // طباعة البيانات المستلمة
+
+        return Right(movie);
+      },
+    );
+  }
+
+  @override
+  Future<Either> getNowPlayingMovie()async {
+    final result = await movieService.getNowPlayingMovie();
+    return result.fold(
+          (error) {
+        return Left(error);
+      },
+          (data) {
 
         var movie = List.from(data['content'])
             .map((item) => (MovieMapper.toEntity(MovieModel.fromJson(item))))
