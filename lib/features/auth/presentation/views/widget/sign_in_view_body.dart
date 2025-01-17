@@ -39,28 +39,26 @@ class SignInViewBody extends StatelessWidget {
           ReactiveButton(
             title: 'Sign In',
             activeColor: AppColors.primary,
-            onSuccess: () {
-
-            },
+            onSuccess: () {},
             onFailure: (String error) {},
             onPressed: () async {
-              final signinUseCase = getIt<SigninUseCase>();
-           final result=   await signinUseCase.call(
-                  params:
-                      UserModel(email: _email.text, password: _password.text));
+              final signinUseCase = sl<SigninUseCase>();
+              final result = await signinUseCase.call(
+                params: UserModel(email: _email.text, password: _password.text),
+              );
               result.fold(
-                    (error) {
-                  print("Error: $error");
-                  buildErrorBar(context, error); // عرض رسالة الخطأ
+                    (failure) {
+                  // فشل تسجيل الدخول
+                  buildErrorBar(context, failure.toString());
                 },
-                    (user) {
-                  print("Success: Welcome ${user.email}");
-                  buildSuccessBar(context, 'Welcome ${user.email}');
-                  AppNavigator.pushAndRemove(context, HomeView.routeName);
+                    (success) {
+                  // نجاح تسجيل الدخول
+                  buildSuccessBar(context, 'Login successful');
+                  AppNavigator.pushReplacementNamed(context, HomeView.routeName);
                 },
               );
-            },
 
+            },
           ),
           const SizedBox(height: 20),
           Text.rich(

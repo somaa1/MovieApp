@@ -8,7 +8,10 @@ import 'package:movieapp/features/auth/presentation/views/sign_in.dart';
 import 'package:reactive_button/reactive_button.dart';
 
 import '../../../../../common/helper/navigation/app_navigation.dart';
+import '../../../../../core/helper_functions/build_error_bar.dart';
+import '../../../../../core/helper_functions/build_success_bar.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../home/presentation/views/home_view.dart';
 
 class SignUpViewBody extends StatelessWidget {
   SignUpViewBody({super.key});
@@ -37,15 +40,17 @@ class SignUpViewBody extends StatelessWidget {
             title: 'Sign Up',
             activeColor: AppColors.primary,
             onSuccess: () {
+AppNavigator.pushAndRemove(context, HomeView.routeName);
             },
             onFailure: (String error) {
-              print('Action failed: $error');
+              buildErrorBar(context, error);
             },
-            onPressed: () async  {
-              final signupUseCase = getIt<SignupUseCase>();
-              await signupUseCase.call(
+            onPressed: () async {
+              final signupUseCase = sl<SignupUseCase>();
+             await signupUseCase.call(
                 params: UserModel(email: _email.text, password: _password.text),
               );
+
             },
           ),
           const SizedBox(height: 20),

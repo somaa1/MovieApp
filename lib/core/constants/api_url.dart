@@ -6,8 +6,8 @@ class ApiUrl {
 
   static const signup = '${baseURL}auth/signup';
   static const signin = '${baseURL}auth/signin';
-  // static const trendingMovies = '${apiV}movie/trending';
-  // static const nowPlayingMovies = '${apiV}movie/nowplaying';
+   static const trendingMovies = '${baseURL}movie/trending';
+   static const nowPlayingMovies = '${baseURL}movie/nowplaying';
   // static const popularTV = '${apiV}tv/popular';
   // static const movie = '${apiV}movie/';
   // static const tv = '${apiV}tv/';
