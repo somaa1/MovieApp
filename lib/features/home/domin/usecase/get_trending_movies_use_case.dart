@@ -8,7 +8,7 @@ class GetTrendingMoviesUseCase extends UseCase<Either,dynamic>{
 
   @override
   Future<Either> call({params}) {
-   return sl<MovieRepo>().getTrendingMovies();
+   return getIt<MovieRepo>().getTrendingMovies();
   }
 
 }

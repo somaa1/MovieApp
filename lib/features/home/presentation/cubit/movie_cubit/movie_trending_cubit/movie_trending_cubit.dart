@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:movieapp/features/home/domin/entites/movie_entity.dart';
 import 'package:movieapp/features/home/domin/usecase/get_trending_movies_use_case.dart';
 
+
 part 'movie_trending_state.dart';
 
 class MovieTrendingCubit extends Cubit<MovieTrendingState> {
@@ -24,4 +25,5 @@ final GetTrendingMoviesUseCase getTrendingMoviesUseCase;
       },
     );
   }
+
 }

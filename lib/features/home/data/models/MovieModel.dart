@@ -45,10 +45,10 @@ class MovieModel {
       adult: json["adult"],
       originalLanguage: json["original_language"],
       genreIds: json["genre_ids"] == null ? [] : List < int > .from(json["genre_ids"] !.map((x) => x)),
-      popularity: json["popularity"],
+      popularity: (json['popularity'] as num).toDouble(),
       releaseDate: DateTime.tryParse(json["release_date"] ?? ""),
       video: json["video"],
-      voteAverage: double.tryParse(json["vote_average"].toString()),
+      voteAverage: (json['vote_average'] as num).toDouble(),
       voteCount: json["vote_count"],
     );
   }

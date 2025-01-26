@@ -6,6 +6,7 @@ import 'package:movieapp/core/network/dio_client.dart';
 
 abstract class MovieService {
   Future<Either> getTrendingMovies();
+  Future<Either> getNowPlayingMovie();
 }
 
 class MovieApiServiceImpl extends MovieService {
@@ -14,8 +15,20 @@ class MovieApiServiceImpl extends MovieService {
   @override
   Future<Either> getTrendingMovies() async {
     try {
-      var response = await sl<DioClient>().get(
+      var response = await getIt<DioClient>().get(
         ApiUrl.trendingMovies,
+      );
+      return Right(response.data);
+    } on DioException catch (e) {
+      return Left(e.response!.data['message']);
+    }
+  }
+
+  @override
+  Future<Either> getNowPlayingMovie()async {
+    try {
+      var response = await getIt<DioClient>().get(
+        ApiUrl.nowPlayingMovies,
       );
       return Right(response.data);
     } on DioException catch (e) {

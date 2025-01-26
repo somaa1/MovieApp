@@ -8,7 +8,7 @@ class GetNowPlayingMoviesUseCase extends UseCase<Either,dynamic>{
 
   @override
   Future<Either> call({params}) {
-   return sl<MovieRepo>().getNowPlayingMovie();
+   return getIt<MovieRepo>().getNowPlayingMovie();
   }
 
 }

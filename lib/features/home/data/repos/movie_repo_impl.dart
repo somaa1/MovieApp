@@ -7,9 +7,10 @@ import 'package:movieapp/features/home/data/models/MovieModel.dart';
 import '../../domin/repos/movie_repo.dart';
 
 class MovieRepoImpl extends MovieRepo {
-final MovieService movieService;
+  final MovieService movieService;
 
   MovieRepoImpl({required this.movieService});
+
   @override
   Future<Either> getTrendingMovies() async {
     final result = await movieService.getTrendingMovies();
@@ -29,14 +30,13 @@ final MovieService movieService;
   }
 
   @override
-  Future<Either> getNowPlayingMovie()async {
+  Future<Either> getNowPlayingMovie() async {
     final result = await movieService.getNowPlayingMovie();
     return result.fold(
-          (error) {
+      (error) {
         return Left(error);
       },
-          (data) {
-
+      (data) {
         var movie = List.from(data['content'])
             .map((item) => (MovieMapper.toEntity(MovieModel.fromJson(item))))
             .toList();
