@@ -17,7 +17,7 @@ class TvPopularMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => GenericDataCubit()
-          ..getData<List<TvEntity>>(sl<GetPopularTvUseCase>()),
+          ..getData<List<TvEntity>>(getIt<GetPopularTvUseCase>()),
         child: BlocBuilder<GenericDataCubit, GenericDataState>(
           builder: (context, state) {
             if (state is DataLoading) {

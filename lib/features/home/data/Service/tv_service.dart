@@ -11,7 +11,7 @@ abstract class TvService {
 class TvApiServiceImpl extends TvService {
   Future<Either<String, dynamic>> getPopularTv() async {
     try {
-      var response = await sl<DioClient>().get(
+      var response = await getIt<DioClient>().get(
         ApiUrl.popularTV,
       );
       return Right(response.data);
